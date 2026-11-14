@@ -1,2 +1,4 @@
-# 12425054_DSA
-Bài tập CSDL&amp;GT - VUANHTUAN - 124251
+# Bài tập CSDL&GT
+- Họ tên : Vũ Anh Tuấn 
+- MSV : 12425054
+- Lớp : 124251
