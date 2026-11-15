@@ -4,7 +4,7 @@ class Program
 {
     static void Main()
     {
-        Console.OutputEncoding = System.Text.Encoding.UTF8;  
+        Console.OutputEncoding = System.Text.Encoding.UTF8; // để in được tiếng Việt
 
         Console.WriteLine("=== Bài 1 ===");
         Bai1();
@@ -20,128 +20,87 @@ class Program
 
         Console.WriteLine("\n=== Bài 5 ===");
         Bai5();
+
+        Console.WriteLine("\n=== Bài 6 ===");
+        Bai6();
     }
 
+    // Bài 1: Tính S(n) = 1 + 2 + 3 + ... + (n-1) + n
     static void Bai1()
     {
-        Random rand = new Random();
-        int[] arr = new int[1000];
-        
-        for (int i = 0; i < 1000; i++)
-        {
-            arr[i] = rand.Next(0, 10000);
-        }
-
-        int maxVal = arr[0];
-        int minVal = arr[0];
-
-        foreach (int num in arr)
-        {
-            if (num > maxVal) maxVal = num;
-            if (num < minVal) minVal = num;
-        }
-
-        Console.WriteLine("Đã tạo ngẫu nhiên 1000 số tự nhiên thành công.");
-        Console.WriteLine($"a. Số lớn nhất trong mảng là: {maxVal}");
-        Console.WriteLine($"b. Số nhỏ nhất trong mảng là: {minVal}");
+        int n = 5; // Ví dụ n = 5
+        Console.WriteLine($"Kết quả S({n}) = {TinhBai1(n)}");
+    }
+    static int TinhBai1(int n)
+    {
+        if (n == 1) return 1; // Trường hợp suy biến
+        return TinhBai1(n - 1) + n; // Trường hợp đệ quy
     }
 
+    // Bài 2: Tính S(n) = 1 + 2^2 + 3^2 + ... + (n-1)^2 + n^2
     static void Bai2()
     {
-        Console.WriteLine("Kết quả bài toán FizzBuzz từ 1 đến 100:");
-        for (int i = 1; i <= 100; i++)
-        {
-            if (i % 3 == 0 && i % 5 == 0)
-            {
-                Console.Write("FizzBuzz ");
-            }
-            else if (i % 3 == 0)
-            {
-                Console.Write("Fizz ");
-            }
-            else if (i % 5 == 0)
-            {
-                Console.Write("Buzz ");
-            }
-            else
-            {
-                Console.Write($"{i} ");
-            }
-        }
-        Console.WriteLine();
+        int n = 4; // Ví dụ n = 4
+        Console.WriteLine($"Kết quả S({n}) = {TinhBai2(n)}");
+    }
+    static int TinhBai2(int n)
+    {
+        if (n == 1) return 1;
+        return TinhBai2(n - 1) + n * n;
     }
 
+    // Bài 3: Tính S(n) = 1 + 1/2 + 1/3 + ... + 1/(n-1) + 1/n
     static void Bai3()
     {
-        Console.Write("Nhập vào một chuỗi bất kỳ: ");
-        string input = Console.ReadLine();
-        
-        if (!string.IsNullOrEmpty(input))
-        {
-            char[] charArray = input.ToCharArray();
-            Array.Reverse(charArray);
-            string reversed = new string(charArray);
-            Console.WriteLine($"Chuỗi đảo ngược là: {reversed}");
-        }
-        else
-        {
-            Console.WriteLine("Chuỗi nhập vào rỗng.");
-        }
+        int n = 4; // Ví dụ n = 4
+        Console.WriteLine($"Kết quả S({n}) = {TinhBai3(n):F4}");
+    }
+    static double TinhBai3(int n)
+    {
+        if (n == 1) return 1.0;
+        return TinhBai3(n - 1) + 1.0 / n;
     }
 
+    // Bài 4: Tính S(x, n) = x^n
     static void Bai4()
     {
-        Random rand = new Random();
-        int[] arr = new int[1000];
-
-        for (int i = 0; i < 1000; i++)
-        {
-            arr[i] = rand.Next(0, 10000);
-        }
-
-        Console.WriteLine("a. In mảng ra màn hình (hiển thị 10 phần tử đầu tiên để dễ theo dõi):");
-        for (int i = 0; i < 10; i++)
-        {
-            Console.Write($"{arr[i]} ");
-        }
-        Console.WriteLine("...");
-
-        Array.Sort(arr);
-
-        Console.WriteLine("b. Mảng sau khi sắp xếp tăng dần (hiển thị 10 phần tử đầu tiên):");
-        for (int i = 0; i < 10; i++)
-        {
-            Console.Write($"{arr[i]} ");
-        }
-        Console.WriteLine("...");
+        double x = 2.0;
+        int n = 3; // Ví dụ 2^3
+        Console.WriteLine($"Kết quả S({x}, {n}) = {TinhBai4(x, n)}");
+    }
+    static double LuyThua(double x, int n)
+    {
+        if (n == 0) return 1;
+        if (n > 0) return LuyThua(x, n - 1) * x;
+        return 1.0 / LuyThua(x, -n);
+    }
+    static double TinhBai4(double x, int n)
+    {
+        if (n < 0) return 1.0 / LuyThua(x, -n);
+        else return LuyThua(x, n);
     }
 
+    // Bài 5: Tìm ước số lẻ lớn nhất của số nguyên dương n
     static void Bai5()
     {
-        Console.Write("Nhập vào số nguyên dương n: ");
-        if (int.TryParse(Console.ReadLine(), out int n) && n >= 0)
-        {
-            long fib = GetFibonacci(n);
-            Console.WriteLine($"Số Fibonacci thứ {n} là: {fib}");
-        }
-        else
-        {
-            Console.WriteLine("Vui lòng nhập một số nguyên dương hợp lệ.");
-        }
+        int n = 100; // Ví dụ n = 100, kết quả phải là 25
+        Console.WriteLine($"Ước số lẻ lớn nhất của {n} là: {UocLeMax(n)}");
+    }
+    static int UocLeMax(int n)
+    {
+        if (n % 2 == 1) return n;
+        return UocLeMax(n / 2);
     }
 
-    static long GetFibonacci(int n)
+    // Bài 6: Tìm ước chung lớn nhất của 2 số nguyên dương a, b (Thuật toán Euclid)
+    static void Bai6()
     {
-        if (n == 0) return 0;
-        if (n == 1) return 1;
-
-        long a = 0, b = 1, c = 0;
-        for (int i = 2; i <= n; i++)
-        {
-            c = a + b;
-            a = b;
-            b = c;
-        }
-        return c;
+        int a = 24, b = 36; // Ví dụ UCLN của 24 và 36
+        Console.WriteLine($"Ước chung lớn nhất của {a} và {b} là: {UCLN(a, b)}");
+    }
+    static int UCLN(int a, int b)
+    {
+        if (a % b == 0) return b;
+        return UCLN(b, a % b);
     }
 }
