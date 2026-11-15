@@ -1,7 +1,7 @@
 ````markdown
 # Buổi 01 – Đệ quy
 
-Họ tên: Nguyễn Văn A · MSV: 10123456
+Họ tên: VU ANH TUAN · MSV: 12425054
 
 ## Bài đã làm
 Bài 1, 2, 3, 4, 5, 6 
